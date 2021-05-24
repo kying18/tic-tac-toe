@@ -1,12 +1,12 @@
 """
 Tic Tac Toe class + game play implementation by Kylie Ying
-YouTube Kylie Ying: https://www.youtube.com/ycubed 
-Twitch KylieYing: https://www.twitch.tv/kylieying 
-Twitter @kylieyying: https://twitter.com/kylieyying 
-Instagram @kylieyying: https://www.instagram.com/kylieyying/ 
+YouTube Kylie Ying: https://www.youtube.com/ycubed
+Twitch KylieYing: https://www.twitch.tv/kylieying
+Twitter @kylieyying: https://twitter.com/kylieyying
+Instagram @kylieyying: https://www.instagram.com/kylieyying/
 Website: https://www.kylieying.com
-Github: https://www.github.com/kying18 
-Programmer Beast Mode Spotify playlist: https://open.spotify.com/playlist/4Akns5EUb3gzmlXIdsJkPs?si=qGc4ubKRRYmPHAJAIrCxVQ 
+Github: https://www.github.com/kying18
+Programmer Beast Mode Spotify playlist: https://open.spotify.com/playlist/4Akns5EUb3gzmlXIdsJkPs?si=qGc4ubKRRYmPHAJAIrCxVQ
 """
 
 import math
@@ -88,10 +88,7 @@ def play(game, x_player, o_player, print_game=True):
             square = x_player.get_move(game)
         if game.make_move(square, letter):
 
-            if print_game:
-                print(letter + ' makes a move to square {}'.format(square))
-                game.print_board()
-                print('')
+            print_move(game, print_game, letter, square)
 
             if game.current_winner:
                 if print_game:
@@ -103,6 +100,12 @@ def play(game, x_player, o_player, print_game=True):
 
     if print_game:
         print('It\'s a tie!')
+
+def print_move(game, print_game, letter, square):
+    if print_game:
+        print(letter + ' makes a move to square {}'.format(square))
+        game.print_board()
+        print('')
 
 
 
