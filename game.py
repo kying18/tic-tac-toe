@@ -1,12 +1,12 @@
 """
 Tic Tac Toe class + game play implementation by Kylie Ying
-YouTube Kylie Ying: https://www.youtube.com/ycubed 
-Twitch KylieYing: https://www.twitch.tv/kylieying 
-Twitter @kylieyying: https://twitter.com/kylieyying 
-Instagram @kylieyying: https://www.instagram.com/kylieyying/ 
+YouTube Kylie Ying: https://www.youtube.com/ycubed
+Twitch KylieYing: https://www.twitch.tv/kylieying
+Twitter @kylieyying: https://twitter.com/kylieyying
+Instagram @kylieyying: https://www.instagram.com/kylieyying/
 Website: https://www.kylieying.com
-Github: https://www.github.com/kying18 
-Programmer Beast Mode Spotify playlist: https://open.spotify.com/playlist/4Akns5EUb3gzmlXIdsJkPs?si=qGc4ubKRRYmPHAJAIrCxVQ 
+Github: https://www.github.com/kying18
+Programmer Beast Mode Spotify playlist: https://open.spotify.com/playlist/4Akns5EUb3gzmlXIdsJkPs?si=qGc4ubKRRYmPHAJAIrCxVQ
 """
 
 import math
@@ -76,34 +76,42 @@ class TicTacToe():
 
 
 def play(game, x_player, o_player, print_game=True):
-
     if print_game:
         game.print_board_nums()
 
     letter = 'X'
     while game.empty_squares():
-        if letter == 'O':
-            square = o_player.get_move(game)
-        else:
-            square = x_player.get_move(game)
+        square = set_square(game, x_player, o_player, letter)
         if game.make_move(square, letter):
-
-            if print_game:
-                print(letter + ' makes a move to square {}'.format(square))
-                game.print_board()
-                print('')
-
+            print_move(game, print_game, letter, square)
             if game.current_winner:
                 if print_game:
                     print(letter + ' wins!')
                 return letter  # ends the loop and exits the game
             letter = 'O' if letter == 'X' else 'X'  # switches player
-
         time.sleep(.8)
 
+    print_tie(print_game)
+
+
+def set_square(game, x_player, o_player, letter):
+    if letter == 'O':
+        square = o_player.get_move(game)
+    else:
+        square = x_player.get_move(game)
+    return square
+
+
+def print_tie(print_game):
     if print_game:
         print('It\'s a tie!')
 
+
+def print_move(game, print_game, letter, square):
+    if print_game:
+        print(letter + ' makes a move to square {}'.format(square))
+        game.print_board()
+        print('')
 
 
 if __name__ == '__main__':
